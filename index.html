@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./Resources/css/looks.css" />
+    <title>Hypermon</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="./Resources/Images/logo.png" alt="Internet Error" />
+      </div>
+      <div class="nav">
+        <ul>
+          <li>
+            <a onclick="ShowCollectionModal()" class="btn btn-blue">
+              New Collection</a
+            >
+          </li>
+          <li>
+            <a href="#"> About us </a>
+          </li>
+          <li class="drop">
+            <img src="./Resources/Images/settings.png" alt="alternet" />
+            <div class="dropdown-content">
+              <div onclick="ShowBackupModal()">Backup</div>
+              <div onclick="ShowRestoreModal()">Restore</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <div class="container">
+      <div class="big-card">
+        <div class="collection-container" id="collection-container"></div>
+      </div>
+    </div>
+    <div class="modal-container" id="CollectionmodalContainer">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-header-title">Add Collection</div>
+          <div class="modal-header-icon">
+            <i
+              class="fa fa-times"
+              aria-hidden="true"
+              onclick="HideCollectionModal()"
+            ></i>
+          </div>
+        </div>
+        <div class="modal-body">
+          <lable for="newCollectionName">Collection Name</lable>
+          <input type="text" id="newCollectionName" class="modal-input" />
+        </div>
+        <div class="modal-buttons">
+          <button class="btn btn-red margin" onclick="HideCollectionModal()">
+            Close
+          </button>
+          <button class="btn btn-blue margin" onclick="AddNewCollection()">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-container" id="NewLinkModalContainer">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-header-title">Add New Link</div>
+          <div class="modal-header-icon">
+            <i
+              class="fa fa-times"
+              aria-hidden="true"
+              onclick="HideLinkModal()"
+            ></i>
+          </div>
+        </div>
+        <div class="modal-body">
+          <lable for="newLinkTitle">Link Title</lable>
+          <input type="text" id="newLinkTitle" class="modal-input" />
+          <lable for="newLink">Link Url</lable>
+          <input type="text" id="newLink" class="modal-input" />
+        </div>
+        <div class="modal-buttons">
+          <button class="btn btn-red margin" onclick="HideLinkModal()">
+            Close
+          </button>
+          <button
+            class="btn btn-blue margin"
+            id="LinkSaveBtn"
+            onclick="SaveNewLink(this)"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-container" id="EditLinkModal">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-header-title">Update Link</div>
+          <div class="modal-header-icon">
+            <i
+              onclick="HideEditLinkModal()"
+              class="fa fa-times"
+              aria-hidden="true"
+            ></i>
+          </div>
+        </div>
+        <div class="modal-body">
+          <lable for="EditLinkTitle">Edit Title</lable>
+          <input type="text" id="EditLinkTitle" class="modal-input" />
+          <lable for="EditLink">Edit Url</lable>
+          <input type="text" id="EditLink" class="modal-input" />
+        </div>
+        <div class="modal-buttons">
+          <button class="btn btn-red margin" onclick="HideEditLinkModal()">
+            Close
+          </button>
+          <button
+            id="LinkUpdateBtn"
+            class="btn btn-blue margin"
+            onclick="EditLink(this)"
+          >
+            Update
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-container" id="BackupModal">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-header-title">Backup Data</div>
+          <div class="modal-header-icon">
+            <i
+              onclick="HideBackupModal()"
+              class="fa fa-times"
+              aria-hidden="true"
+            ></i>
+          </div>
+        </div>
+        <div class="modal-body">
+          <button class="btn btn-red" onclick="generateBackup()">
+            Download BackUp File
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-container" id="RestoreModal">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-header-title">Restore Data</div>
+          <div class="modal-header-icon">
+            <i
+              onclick="HideRestoreModal()"
+              class="fa fa-times"
+              aria-hidden="true"
+            ></i>
+          </div>
+        </div>
+        <div class="modal-body">
+          <lable class="lable" for="RestoreFile">Choose The File : </lable>
+          <input
+            class="input"
+            type="file"
+            id="RestoreFile"
+            placeholder="Choose the File"
+          />
+        </div>
+        <div class="modal-buttons">
+          <button class="btn btn-red margin" onclick="HideRestoreModal()">
+            Close
+          </button>
+          <button
+            id="RestoreBtn"
+            class="btn btn-blue margin"
+            onclick="LoadDatatoLocal(this)"
+          >
+            Restore
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <h5>A Open Source Project by Soumen Samanta</h5>
+      <h6>
+        <a href="#">LinkedIn</a>
+        |
+        <a href="#">Github</a>
+      </h6>
+    </div>
+    <script src="./Resources/js/brain.js"></script>
+  </body>
+</html>
