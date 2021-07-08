@@ -24,7 +24,7 @@ This are the list of feature that the app contain
 
  **Note** 
 
-> **Warning **: 	:warning: if you clean or uninstall your browser so make you have created a backup before it 
+> ** Warning **: 	:warning: if you clean or uninstall your browser so make you have created a backup before it 
 
 ---
 
